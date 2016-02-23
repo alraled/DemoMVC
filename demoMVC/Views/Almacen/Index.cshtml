@@ -1,0 +1,33 @@
+﻿@model IEnumerable<demoMVC.Models.Almacen>
+
+@{
+    ViewBag.Title = "title";
+    
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-md-3">
+        <h3>Nombre</h3>
+        <p>
+            @Html.DisplayFor(o => item.Ciudad)
+            @Html.DisplayFor(o => item.CP)
+        </p>
+
+        <p>@Html.ActionLink("Modificar", "Modificar", new {id = item.idAlmacen})</p>
+
+
+        <a href="#" id="lnkDel">Borrar</a>
+        @*<p>@Html.ActionLink("Borrar", "Borrar", new { id = item.idAlmacen })</p>*@
+    </div>
+}
+
+<script>
+    $("#lnkDel").click(function() {
+        var r = confirm("¿Estás seguro?");
+        if (r) {
+            var id = $(this).attr("data-id");
+            location.href = "/Almacen/Borrar"+id;
+        }
+    });
+</script>
